@@ -11,27 +11,17 @@ public class FirstPersonController : MonoBehaviour {
 	float verticalRotation = 0;
 	float verticalSpeed = 0;
 	CharacterController characterController;
-	ParticleSystem shootAnimation;
 
 	// Use this for initialization
 	void Start () {
 		Screen.lockCursor = true;
 		characterController = GetComponent<CharacterController> ();
-		shootAnimation = 
-			Camera.main
-				.transform.Find ("Camera")
-				.transform.Find ("Gun")
-				.transform.Find ("Effects")
-				.transform.Find ("WeaponRoot")
-				.transform.Find ("Particle System")
-				.GetComponent<ParticleSystem> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		Rotate ();
 		Move ();
-		Shoot ();
 	}
 
 	void Rotate() {
@@ -56,15 +46,5 @@ public class FirstPersonController : MonoBehaviour {
 		Vector3 speed = new Vector3 (sideSpeed, verticalSpeed, forwardSpeed);
 		
 		characterController.Move (transform.rotation * speed * movementSpeed * Time.deltaTime);
-	}
-
-	void Shoot() {
-		if(Input.GetButtonDown("Fire1")) {
-			shootAnimation.Play();
-		}
-
-		if (Input.GetButtonUp ("Fire1")) {
-			shootAnimation.Stop();
-		}
 	}
 }

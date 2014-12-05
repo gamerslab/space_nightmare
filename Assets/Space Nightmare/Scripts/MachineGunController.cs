@@ -9,6 +9,7 @@ public class MachineGunController : MonoBehaviour {
 	public float damage = 5.0f;
 
 	ParticleSystem shootAnimation;
+	GameObject bang;
 	int currentAmmo;
 	int storeAmmo;
 	float accumulator;
@@ -21,6 +22,7 @@ public class MachineGunController : MonoBehaviour {
 				.transform.Find ("WeaponRoot")
 				.transform.Find ("Particle System")
 				.GetComponent<ParticleSystem> ();
+		bang = transform.Find ("Bang").gameObject;
 		currentAmmo = ammoPerMagazine;
 		storeAmmo = ammoMax - currentAmmo;
 		accumulator = 0;
@@ -35,6 +37,23 @@ public class MachineGunController : MonoBehaviour {
 				shootAnimation.Play();
 				accumulator += interval;
 				// Shoot logic here
+				RaycastHit hit;
+				Vector3 fwd = Camera.main.transform.TransformDirection(Vector3.forward);
+				Debug.DrawRay(Camera.main.transform.position, fwd * 10, Color.red, 2, true);
+
+				if(Physics.Raycast(Camera.main.transform.position, fwd, out hit, 100, Physics.kDefaultRaycastLayers)) {
+					GameObject b = (GameObject) Instantiate(bang, hit.point, Quaternion.LookRotation(hit.normal));
+					ParticleSystem p = b.GetComponent<ParticleSystem>();
+					p.Play();
+					p.gameObject.AddComponent("ParticleSystemAutoDestroy");
+
+					GameObject obj = hit.collider.gameObject;
+					if(obj.tag == "Enemy") {
+						Debug.Log("Enemy hit");
+					} else {
+
+					}
+				}
 			}
 		} else {
 			accumulator -= Time.deltaTime;

@@ -2174,7 +2174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ffb7aa165bb4c4286991fe96eb089f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
+  movementSpeed: 8
   mouseSensitivity: 3
   verticalRange: 60
   jumpSpeed: 1
@@ -19981,7 +19981,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1568773845}
-  - 114: {fileID: 1568773844}
   - 64: {fileID: 1568773843}
   m_Layer: 0
   m_Name: GameDrawManager
@@ -20003,17 +20002,6 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 0}
---- !u!114 &1568773844
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1568773842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1074409957, guid: c8ec32a81b1c30145acc9c42b292b2bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1568773845
 Transform:
   m_ObjectHideFlags: 1

@@ -1,15 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpiderIA : MonoBehaviour {
-	public float speed = 1.0f;
+public class SpiderAI : MonoBehaviour {
+	bool isDead = false;
+	bool reached = false;
+
 	// Use this for initialization
 	void Start () {
-		animation.CrossFade ("walk");
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate (0.0f,0.0f,speed*Time.deltaTime);
+
+	}
+
+	void Dead(string animationName)
+	{
+		if (!isDead) {
+			Destroy(gameObject.GetComponent<BoxCollider> ());
+			Destroy(gameObject.GetComponent<NavMeshAgent> ());
+			isDead = true;
+		}
+	}
+
+	void Reached(string attackAnimation){
+		animation.CrossFade (attackAnimation);
+		reached = true;
+	}
+	
+	void NotReached(string runAnimation){
+		animation.CrossFade (runAnimation);
+		reached = false;
 	}
 }
+//void Update () {
+//	na.destination = destination.gameObject.transform.position;
+//	sprite.RotateTowards(new Vector2(na.steeringTarget.x,na.steeringTarget.z));                            
+

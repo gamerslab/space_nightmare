@@ -49,6 +49,7 @@ public class MachineGunController : MonoBehaviour {
 
 					GameObject obj = hit.collider.gameObject;
 					if(obj.tag == "Enemy") {
+						obj.SendMessage("OnDamage",1);
 						Debug.Log("Enemy hit");
 					} else {
 

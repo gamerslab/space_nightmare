@@ -33,8 +33,4 @@ public class SpiderAI : MonoBehaviour {
 		animation.CrossFade (runAnimation);
 		reached = false;
 	}
-}
-//void Update () {
-//	na.destination = destination.gameObject.transform.position;
-//	sprite.RotateTowards(new Vector2(na.steeringTarget.x,na.steeringTarget.z));                            
-
+}                  

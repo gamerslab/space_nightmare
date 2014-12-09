@@ -6,14 +6,19 @@ public class FirstPersonController : MonoBehaviour {
 	public float movementSpeed = 5.0f;
 	public float mouseSensitivity = 3.0f;
 	public float verticalRange = 60.0f;
-	public float jumpSpeed = 3.0f;
+	public float jumpSpeed = 7.0f;
 
-	float verticalRotation = 0;
-	float verticalSpeed = 0;
+	float verticalRotation = 0.0f;
+	float verticalSpeed = 0.0f;
 	CharacterController characterController;
+	public float gravityForce;
+	float floorY;
+	bool hasJumped = false;
+	Vector3 numKey = new Vector3(0, 0, 0);
 
 	// Use this for initialization
 	void Start () {
+		floorY = transform.position.y;
 		Screen.lockCursor = true;
 		characterController = GetComponent<CharacterController> ();
 	}
@@ -36,15 +41,49 @@ public class FirstPersonController : MonoBehaviour {
 	void Move() {
 		float forwardSpeed = Input.GetAxis ("Vertical");
 		float sideSpeed = Input.GetAxis ("Horizontal");
-		
-		verticalSpeed += Physics.gravity.y * Time.deltaTime;
+
 		
 		if (characterController.isGrounded && Input.GetButtonDown ("Jump")) {
 			verticalSpeed = jumpSpeed;
+			hasJumped = true;
+		}
+		if (!characterController.isGrounded) {
+			verticalSpeed -= gravityForce * Time.deltaTime;
 		}
 		
 		Vector3 speed = new Vector3 (sideSpeed, verticalSpeed, forwardSpeed);
 		
 		characterController.Move (transform.rotation * speed * movementSpeed * Time.deltaTime);
+	}
+
+	void GiveKey(int typeKey)
+	{
+		if (typeKey == 0)
+			numKey.x++;
+		else if (typeKey == 1)
+			numKey.y++;
+		else if (typeKey == 2)
+			numKey.z++;
+	}
+
+	public bool hasKey(int typeKey)
+	{
+		if (typeKey == 0)
+			return numKey.x > 0;
+		else if (typeKey == 1)
+			return numKey.y > 0;
+		else if (typeKey == 2)
+			return numKey.z > 0;
+		return false;
+	}
+
+	void wasteKey(int typeKey)
+	{
+		if (typeKey == 0)
+			numKey.x--;
+		else if (typeKey == 1)
+			numKey.y--;
+		else if (typeKey == 2)
+			numKey.z--;
 	}
 }

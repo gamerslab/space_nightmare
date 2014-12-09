@@ -7,11 +7,11 @@ public class FirstPersonController : MonoBehaviour {
 	public float mouseSensitivity = 3.0f;
 	public float verticalRange = 60.0f;
 	public float jumpSpeed = 7.0f;
+	public float gravityForce = -9.8f;
 
 	float verticalRotation = 0.0f;
 	float verticalSpeed = 0.0f;
 	CharacterController characterController;
-	public float gravityForce;
 	float floorY;
 	bool hasJumped = false;
 	Vector3 numKey = new Vector3(0, 0, 0);
@@ -41,18 +41,18 @@ public class FirstPersonController : MonoBehaviour {
 	void Move() {
 		float forwardSpeed = Input.GetAxis ("Vertical");
 		float sideSpeed = Input.GetAxis ("Horizontal");
-
 		
-		if (characterController.isGrounded && Input.GetButtonDown ("Jump")) {
-			verticalSpeed = jumpSpeed;
-			hasJumped = true;
-		}
-		if (!characterController.isGrounded) {
-			verticalSpeed -= gravityForce * Time.deltaTime;
+
+		if (characterController.isGrounded) {
+			if(Input.GetButtonDown ("Jump")) {
+				verticalSpeed = jumpSpeed;
+				hasJumped = true;
+			}
+		} else {
+			verticalSpeed += gravityForce * Time.deltaTime;
 		}
 		
 		Vector3 speed = new Vector3 (sideSpeed, verticalSpeed, forwardSpeed);
-		
 		characterController.Move (transform.rotation * speed * movementSpeed * Time.deltaTime);
 	}
 

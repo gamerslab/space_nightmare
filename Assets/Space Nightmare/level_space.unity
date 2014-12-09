@@ -3956,7 +3956,7 @@ MonoBehaviour:
   mouseSensitivity: 3
   verticalRange: 60
   jumpSpeed: 1
-  gravityForce: .5
+  gravityForce: -6
 --- !u!143 &237892727
 CharacterController:
   m_ObjectHideFlags: 0

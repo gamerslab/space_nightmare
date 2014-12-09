@@ -609,6 +609,7 @@ MonoBehaviour:
   mouseSensitivity: 3
   verticalRange: 60
   jumpSpeed: 1
+  gravityForce: -6
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

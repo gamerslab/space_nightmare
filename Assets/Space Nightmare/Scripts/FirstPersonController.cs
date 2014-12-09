@@ -86,4 +86,9 @@ public class FirstPersonController : MonoBehaviour {
 		else if (typeKey == 2)
 			numKey.z--;
 	}
+
+	void AmmoRecharge(int ammount)
+	{
+		transform.Find ("Camera").Find ("Camera").Find ("MachineGun").SendMessage ("AmmoRecharge", ammount);
+	}
 }

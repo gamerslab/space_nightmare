@@ -2061,6 +2061,8 @@ MonoBehaviour:
   attackAnimation: {fileID: 7400008, guid: bc600cce01eb57a409f4e69025868a2c, type: 3}
   lifePoints: 1
   deathAnimation: {fileID: 7400022, guid: bc600cce01eb57a409f4e69025868a2c, type: 3}
+  likelihoodPrice: .00999999978
+  price: {fileID: 100000, guid: fd4a4afda7d19fc45a0d4823ff94d562, type: 2}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

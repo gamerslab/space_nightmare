@@ -21,9 +21,14 @@ public class EnemyScript : MonoBehaviour {
 	public AnimationClip deathAnimation;
 	bool isDead = false;
 
+	public float likelihoodPrice;
+	int likelihoodPriceInt;
+	public GameObject price;
+
 	void Start () {
 		agent = GetComponent<NavMeshAgent> ();
-		
+		likelihoodPriceInt = Mathf.FloorToInt (likelihoodPrice * 100);
+
 		fireMoment = 1.0f;
 		animation[runAnimation.name].speed = runningSpeed;
 		animation.CrossFade (runAnimation.name);
@@ -57,6 +62,13 @@ public class EnemyScript : MonoBehaviour {
 		lifePoints -= damage;
 		Debug.Log (lifePoints);
 		if (lifePoints <= 0 && !isDead) {
+			if (Random.Range(0,100) <= likelihoodPriceInt)
+			{
+				Vector3 boxPosition = transform.position;
+				boxPosition.y = 0.37f;
+				Instantiate (price, boxPosition, 
+				             Quaternion.AngleAxis(90,Vector3.left)); 
+			}
 			agent.Stop();
 			//			gameObject.GetComponent<BoxCollider>().isTrigger = true;
 			

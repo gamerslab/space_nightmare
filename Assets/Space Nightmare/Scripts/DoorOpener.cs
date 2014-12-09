@@ -16,14 +16,14 @@ public class DoorOpener : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (isOpening) 
-		{
-			doorSlide -= Time.deltaTime;
-			door.transform.Translate(Time.deltaTime,0.0f,0.0f);
-		}
-		if (doorSlide <= 0.0f) 
-		{
-			Destroy(gameObject);
+		if (!isOpened) {
+			if (isOpening) {
+				doorSlide -= Time.deltaTime;
+				door.transform.Translate (Time.deltaTime, 0.0f, 0.0f);
+			}
+			if (doorSlide <= 0.0f) {
+				isOpened = true;
+			}
 		}
 	}
 
@@ -35,6 +35,10 @@ public class DoorOpener : MonoBehaviour {
 					other.SendMessage("wasteKey",typeKey);
 					Debug.Log ("Nice key");
 					isOpening = true;
+					foreach(GameObject currentObject in GameObject.FindGameObjectsWithTag("EnemyFactory"))
+					{
+						currentObject.SendMessage("Activate");
+					}
 				} else {
 					Debug.Log ("No key");
 				}

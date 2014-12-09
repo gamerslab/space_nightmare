@@ -95,4 +95,10 @@ public class MachineGunController : MonoBehaviour {
 			reload = true;
 		}
 	}
+
+	void AmmoRecharge(int ammount)
+	{
+		storeAmmo = Mathf.Min (ammoMax, storeAmmo+ammount);
+		storeAmmoUI.text = storeAmmo.ToString();
+	}
 }

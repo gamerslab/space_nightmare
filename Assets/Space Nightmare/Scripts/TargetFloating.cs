@@ -52,9 +52,7 @@ public class TargetFloating : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Player") {
-			other.SendMessage("TargetReached");
 			Destroy(targetObject.gameObject);
-			Destroy(gameObject);
 		}
 	}
 }

@@ -5672,7 +5672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentObjective: {fileID: 1926568748}
-  firstObjective: Get into a spaceship
+  firstObjective: Get some explosives
   showInterval: 2
 --- !u!1001 &133359423
 Prefab:
@@ -35239,6 +35239,7 @@ GameObject:
   - 4: {fileID: 1186485119}
   - 136: {fileID: 1186485118}
   - 114: {fileID: 1186485117}
+  - 114: {fileID: 1186485120}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -35288,6 +35289,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
+--- !u!114 &1186485120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1186485116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c75e785159a9c41bc5a03651d327f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newObjective: Get into a spaceship
 --- !u!1 &1190222537
 GameObject:
   m_ObjectHideFlags: 0
@@ -63255,7 +63268,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400020, guid: 5bb56e4e6b04cd349be05db4f0fdf8f4, type: 2}
       propertyPath: firstObjective
-      value: Get into a spaceship
+      value: Get some explosives
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bb56e4e6b04cd349be05db4f0fdf8f4, type: 2}

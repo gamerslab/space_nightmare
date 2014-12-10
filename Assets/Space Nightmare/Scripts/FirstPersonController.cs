@@ -91,4 +91,9 @@ public class FirstPersonController : MonoBehaviour {
 	{
 		transform.Find ("Camera").Find ("Camera").Find ("MachineGun").SendMessage ("AmmoRecharge", ammount);
 	}
+
+	void TargetReached()
+	{
+
+	}
 }

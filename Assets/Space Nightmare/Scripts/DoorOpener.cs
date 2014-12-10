@@ -11,6 +11,31 @@ public class DoorOpener : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		door = transform.Find ("Door");
+		Transform door2 = door.Find ("Plane");
+		Renderer doorShader1 = door.GetComponent<Renderer>();
+		Color currentColor = doorShader1.materials[0].color;
+		currentColor.r = 0f;
+		currentColor.g = 0f;
+		currentColor.b = 0f;
+		
+		Renderer doorShader2 = door2.GetComponent<Renderer>();
+		if (typeKey == 0) 
+		{
+			currentColor.r = 1f;
+			doorShader1.materials[0].SetColor ("_Color", currentColor);
+			doorShader2.materials[0].SetColor ("_Color", currentColor);
+		} else if (typeKey == 1) 
+		{
+			currentColor.g = 1f;
+			doorShader1.materials[0].SetColor ("_Color", currentColor);
+			doorShader2.materials[0].SetColor ("_Color", currentColor);
+		} 
+		else 
+		{
+			currentColor.b = 1f;
+			doorShader1.materials[0].SetColor ("_Color", currentColor);
+			doorShader2.materials[0].SetColor ("_Color", currentColor);
+		}
 		GetComponent<MeshRenderer>().enabled = false;
 	}
 	

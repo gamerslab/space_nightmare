@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class ChangeLevelSphere : MonoBehaviour {
-
+	bool activatedTarget = false;
 	// Use this for initialization
 	void Start () {
 		GetComponent<MeshRenderer>().enabled = false;
@@ -13,12 +13,19 @@ public class ChangeLevelSphere : MonoBehaviour {
 	
 	}
 
+	void activateTarget()
+	{
+		activatedTarget = true;
+	}
+
 	void OnTriggerEnter(Collider other) {
-		if (other.tag == "Player") {
-			Debug.Log ("Player detected");
-			Application.LoadLevel("level_space");
-		} else {
-			Debug.Log ("Alien detected");
+		if (activatedTarget) {
+			if (other.tag == "Player") {
+				Debug.Log ("Player detected");
+				Application.LoadLevel ("level_space");
+			} else {
+				Debug.Log ("Alien detected");
+			}
 		}
 	}
 }

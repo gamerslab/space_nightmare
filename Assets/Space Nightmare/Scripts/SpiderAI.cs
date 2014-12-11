@@ -33,4 +33,9 @@ public class SpiderAI : MonoBehaviour {
 		animation.CrossFade (runAnimation);
 		reached = false;
 	}
+	
+	void isIddle(string iddleAnimation)
+	{
+		animation.CrossFade (iddleAnimation);
+	}
 }                  

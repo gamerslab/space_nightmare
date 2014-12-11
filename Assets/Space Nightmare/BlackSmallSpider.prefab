@@ -1978,7 +1978,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100140}
   m_LocalRotation: {x: 0, y: .993421197, z: 0, w: .114518262}
-  m_LocalPosition: {x: 1452.40002, y: .206269994, z: 1396.90002}
+  m_LocalPosition: {x: 1407.3064, y: -.0465042442, z: 1317.73804}
   m_LocalScale: {x: .444610029, y: .444610029, z: .444610029}
   m_Children:
   - {fileID: 400138}
@@ -2061,8 +2061,10 @@ MonoBehaviour:
   attackAnimation: {fileID: 7400008, guid: bc600cce01eb57a409f4e69025868a2c, type: 3}
   lifePoints: 1
   deathAnimation: {fileID: 7400022, guid: bc600cce01eb57a409f4e69025868a2c, type: 3}
+  iddleAnimation: {fileID: 7400010, guid: bc600cce01eb57a409f4e69025868a2c, type: 3}
   likelihoodPrice: .00999999978
   price: {fileID: 100000, guid: fd4a4afda7d19fc45a0d4823ff94d562, type: 2}
+  activated: 0
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

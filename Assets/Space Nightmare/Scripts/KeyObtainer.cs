@@ -5,14 +5,15 @@ public class KeyObtainer : MonoBehaviour {
 	public int typeKey;
 	// Use this for initialization
 	void Start () {
-		Transform secondPlane = transform.Find ("Plane");
-		Renderer screenShader1 = transform.GetComponent<Renderer>();
+		Transform firstCube = transform.Find ("Cube1");
+		Transform secondCube = transform.Find ("Cube2");
+		Renderer screenShader1 = firstCube.GetComponent<Renderer>();
 		Color currentColor = screenShader1.materials[0].color;
 		currentColor.r = 0f;
 		currentColor.g = 0f;
 		currentColor.b = 0f;
 
-		Renderer screenShader2 = secondPlane.GetComponent<Renderer>();
+		Renderer screenShader2 = secondCube.GetComponent<Renderer>();
 		if (typeKey == 0) 
 		{
 			currentColor.r = 1f;

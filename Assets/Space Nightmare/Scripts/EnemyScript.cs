@@ -21,9 +21,13 @@ public class EnemyScript : MonoBehaviour {
 	public AnimationClip deathAnimation;
 	bool isDead = false;
 
+	public AnimationClip iddleAnimation;
+
 	public float likelihoodPrice;
 	int likelihoodPriceInt;
 	public GameObject price;
+
+	public bool activated;
 
 	void Start () {
 		agent = GetComponent<NavMeshAgent> ();
@@ -36,29 +40,37 @@ public class EnemyScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!isDead) {
-			agent.SetDestination (target.position);
-			
-			float dist = agent.remainingDistance; 
-			if (dist != Mathf.Infinity && agent.pathStatus == 
-			    NavMeshPathStatus.PathComplete && agent.remainingDistance <= agent.stoppingDistance) {
-				_dir = target.position - transform.position;
-				_dir.Normalize ();
-				transform.rotation = 
-					Quaternion.Slerp (transform.rotation, 
-					                  Quaternion.LookRotation (_dir), turnSpeed * Time.deltaTime);
-//				animation.CrossFade (attackAnimation.name);
-				gameObject.SendMessage("Reached", attackAnimation.name);
-			} else {
-				gameObject.SendMessage("NotReached", runAnimation.name);
-//				animation.CrossFade (runAnimation.name);
+		if (!activated) 
+		{
+			gameObject.SendMessage("isIddle", iddleAnimation.name);
+		}
+		else
+		{
+			if (!isDead) {
+				agent.SetDestination (target.position);
+				
+				float dist = agent.remainingDistance; 
+				if (dist != Mathf.Infinity && agent.pathStatus == 
+				    NavMeshPathStatus.PathComplete && agent.remainingDistance <= agent.stoppingDistance) {
+					_dir = target.position - transform.position;
+					_dir.Normalize ();
+					transform.rotation = 
+						Quaternion.Slerp (transform.rotation, 
+						                  Quaternion.LookRotation (_dir), turnSpeed * Time.deltaTime);
+	//				animation.CrossFade (attackAnimation.name);
+					gameObject.SendMessage("Reached", attackAnimation.name);
+				} else {
+					gameObject.SendMessage("NotReached", runAnimation.name);
+	//				animation.CrossFade (runAnimation.name);
+				}
+				//		Vector3 nextPos = agent.steeringTarget;
 			}
-			//		Vector3 nextPos = agent.steeringTarget;
 		}
 	}
 
 	void OnDamage(int damage)
 	{
+		activated = true;
 		lifePoints -= damage;
 		Debug.Log (lifePoints);
 		if (lifePoints <= 0 && !isDead) {
@@ -80,7 +92,12 @@ public class EnemyScript : MonoBehaviour {
 			gameObject.SendMessage("Dead",deathAnimation.name);
 		}
 	}
-	
+
+	void Activate ()
+	{
+		activated = true;
+	}
+
 	void Reached(){
 		
 	}

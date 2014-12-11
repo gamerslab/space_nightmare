@@ -87,4 +87,9 @@ public class TrollAI : MonoBehaviour {
 			PlayAnimation (nameDeadAnimation, 0.0f, 1.29f);
 		}
 	}
+
+	void isIddle(string iddleAnimation)
+	{
+		animation.CrossFade (iddleAnimation);
+	}
 }

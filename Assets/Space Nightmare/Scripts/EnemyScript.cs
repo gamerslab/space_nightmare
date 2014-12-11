@@ -27,7 +27,6 @@ public class EnemyScript : MonoBehaviour {
 	int likelihoodPriceInt;
 	public GameObject price;
 
-	public bool activated = false;
 
 	void Start () {
 		agent = GetComponent<NavMeshAgent> ();
@@ -70,7 +69,6 @@ public class EnemyScript : MonoBehaviour {
 
 	void OnDamage(int damage)
 	{
-		activated = true;
 		lifePoints -= damage;
 		Debug.Log (lifePoints);
 		if (lifePoints <= 0 && !isDead) {
@@ -91,11 +89,6 @@ public class EnemyScript : MonoBehaviour {
 			isDead = true;
 			gameObject.SendMessage("Dead",deathAnimation.name);
 		}
-	}
-
-	void Activate ()
-	{
-		activated = true;
 	}
 
 	void Reached(){

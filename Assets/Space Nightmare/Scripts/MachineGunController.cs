@@ -16,14 +16,18 @@ public class MachineGunController : MonoBehaviour {
 	int currentAmmo;
 	int storeAmmo;
 	float accumulator;
+	float lightAccumulator;
 	float interval;
 	bool reload;
+
+	public Light shootLight;
 
 	// Use this for initialization
 	void Start () {
 		currentAmmo = ammoPerMagazine;
 		storeAmmo = ammoMax - currentAmmo;
 		accumulator = 0;
+		lightAccumulator = 0;
 		interval = 1.0f / fireRate;
 		reload = false;
 		currentAmmoUI.text = currentAmmo.ToString();
@@ -61,12 +65,19 @@ public class MachineGunController : MonoBehaviour {
 		} else {
 			accumulator -= Time.deltaTime;
 		}
+		if (lightAccumulator <= 0.0f) 
+		{
+			shootLight.gameObject.SetActive(false);
+		} else {
+			lightAccumulator -= Time.deltaTime;
+		}
 	}
 
 	void Shoot() {
 		shootAnimation.Stop ();
 		shootAnimation.Play();
 		accumulator += interval;
+		lightAccumulator = interval;
 		currentAmmo -= 1;
 		currentAmmoUI.text = currentAmmo.ToString();
 		
@@ -86,6 +97,7 @@ public class MachineGunController : MonoBehaviour {
 				Debug.Log("Enemy hit");
 			}
 		}
+		shootLight.gameObject.SetActive(true);
 	}
 
 	void Reload() {

@@ -27,7 +27,7 @@ public class EnemyScript : MonoBehaviour {
 	int likelihoodPriceInt;
 	public GameObject price;
 
-	public bool activated;
+	public bool activated = false;
 
 	void Start () {
 		agent = GetComponent<NavMeshAgent> ();
@@ -40,7 +40,7 @@ public class EnemyScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!activated) 
+		if (Vector3.Distance(Camera.main.transform.position,transform.position) > 25.0f)
 		{
 			gameObject.SendMessage("isIddle", iddleAnimation.name);
 		}

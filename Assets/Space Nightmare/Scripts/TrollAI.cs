@@ -117,6 +117,6 @@ public class TrollAI : MonoBehaviour {
 	
 	void setDeathAnimation(AnimationClip deathAnimation)
 	{
-		
+		this.deathAnimation = deathAnimation;
 	}
 }

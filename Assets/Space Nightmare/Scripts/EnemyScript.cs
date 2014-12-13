@@ -35,6 +35,12 @@ public class EnemyScript : MonoBehaviour {
 		fireMoment = 1.0f;
 		animation[runAnimation.name].speed = runningSpeed;
 		animation.CrossFade (runAnimation.name);
+
+		gameObject.SendMessage("setTarget", target);
+		gameObject.SendMessage("setAttackAnimation", attackAnimation);
+		gameObject.SendMessage("setRunAnimation", runAnimation);
+		gameObject.SendMessage("setIddleAnimation", iddleAnimation);
+		gameObject.SendMessage("setDeathAnimation", deathAnimation);
 	}
 	
 	// Update is called once per frame

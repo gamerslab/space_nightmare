@@ -3745,7 +3745,6 @@ MonoBehaviour:
   iddleAnimation: {fileID: 7400002, guid: e58e375f5ed38074480b5df1226c7bc3, type: 3}
   likelihoodPrice: .5
   price: {fileID: 100000, guid: b5f7eecd24d48d142a202046e11be14a, type: 2}
-  activated: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3758,6 +3757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletFire: {fileID: 5400000, guid: 09132d7d4f2f9be4684444c996d66291, type: 2}
+  bulletSpeed: 800
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

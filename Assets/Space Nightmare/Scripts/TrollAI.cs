@@ -17,17 +17,23 @@ public class TrollAI : MonoBehaviour {
 	Transform firePoint;
 	bool hasFired;
 	bool reached;
+	public float bulletSpeed;
 
 	bool isDead = false;
 	
 	float timeBeforeDisappear = 5.0f;
 	
+	// Animations
+	AnimationClip attackAnimation;
+	AnimationClip runAnimation;
+	AnimationClip iddleAnimation;
+	AnimationClip deathAnimation;
+
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent> ();
 		
 		accumulator = 0.0f;
-		interval = 2.70f;
 		fireMoment = 1.0f;
 		firePoint = transform.Find ("FirePoint");
 		hasFired = false;
@@ -42,7 +48,7 @@ public class TrollAI : MonoBehaviour {
 						accumulator += interval;
 				} else if (accumulator <= fireMoment && !hasFired) {
 						Rigidbody bullet = Instantiate (bulletFire, firePoint.position, transform.rotation) as Rigidbody;
-						bullet.AddForce (-firePoint.transform.forward * 400);
+						bullet.AddForce (-firePoint.transform.forward * bulletSpeed);
 						hasFired = true;
 				}
 			} else {
@@ -69,27 +75,48 @@ public class TrollAI : MonoBehaviour {
 		endAnimationAtTime = endTime;
 	}
 
-	void Reached(string attackAnimation){
-		animation.CrossFade (attackAnimation);
+	void Reached(){
+		animation.CrossFade (attackAnimation.name);
 		reached = true;
 	}
 	
-	void NotReached(string runAnimation){
-		animation.CrossFade (runAnimation);
+	void NotReached(){
+		animation.CrossFade (runAnimation.name);
 		reached = false;
 	}
 
-	void Dead(string nameDeadAnimation){
+	void Dead(){
 		if (!isDead) {
 			Destroy(gameObject.GetComponent<NavMeshAgent> ());
 			Destroy(gameObject.GetComponent<CharacterController> ());
 			isDead = true;
-			PlayAnimation (nameDeadAnimation, 0.0f, 1.29f);
+			PlayAnimation (deathAnimation.name, 0.0f, 1.29f);
 		}
 	}
 
-	void isIddle(string iddleAnimation)
+	void isIddle()
 	{
-		animation.CrossFade (iddleAnimation);
+		animation.CrossFade (iddleAnimation.name);
+	}
+
+	void setAttackAnimation(AnimationClip attackAnimation)
+	{
+		this.attackAnimation = attackAnimation;
+		interval = attackAnimation.length;
+	}
+	
+	void setRunAnimation(AnimationClip runAnimation)
+	{
+		this.runAnimation = runAnimation;
+	}
+	
+	void setIddleAnimation(AnimationClip iddleAnimation)
+	{
+		this.iddleAnimation = iddleAnimation;
+	}
+	
+	void setDeathAnimation(AnimationClip deathAnimation)
+	{
+		
 	}
 }

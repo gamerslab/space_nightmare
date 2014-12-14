@@ -7,14 +7,18 @@ public class EnemyFactory : MonoBehaviour {
 	public float likelihood;
 	public ParticleSystem creationEffects;
 	public float radium;
+	public float interval;
+	public float timeOfLife;
+
 	float accumulator = 0.0f;
 	float effectAccumulator = 0.0f;
 	float timeOfEffect = 0.3f;
 	float totalAccumulator = 0.0f;
-	public float timeOfLife;
+
 	float distance;
 	int degrees;
 	int taken;
+
 	bool effectsPlaying = false;
 	// Use this for initialization
 	void Start () {
@@ -23,7 +27,7 @@ public class EnemyFactory : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (accumulator >= 1.0f) {
+		if (accumulator >= interval) {
 			int randomNumber = Random.Range (0, 100);
 			if (randomNumber < taken) {
 				degrees = Random.Range(0,359);

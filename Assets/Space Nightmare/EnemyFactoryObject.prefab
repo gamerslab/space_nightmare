@@ -73,6 +73,8 @@ MonoBehaviour:
   target: {fileID: 0}
   likelihood: .5
   creationEffects: {fileID: 19800000}
+  radium: 0
+  interval: 1
   timeOfLife: 6
 --- !u!198 &19800000
 ParticleSystem:

@@ -44,12 +44,13 @@ public class TrollAI : MonoBehaviour {
 		if (!isDead) {
 			if (reached) {
 				if (accumulator <= 0.0f) {
-						hasFired = false;
-						accumulator += interval;
+					hasFired = false;
+					accumulator += interval;
 				} else if (accumulator <= fireMoment && !hasFired) {
-						Rigidbody bullet = Instantiate (bulletFire, firePoint.position, transform.rotation) as Rigidbody;
-						bullet.AddForce (-firePoint.transform.forward * bulletSpeed);
-						hasFired = true;
+					Rigidbody bullet = Instantiate (bulletFire, firePoint.position, transform.rotation) as Rigidbody;
+					firePoint.transform.LookAt(Camera.main.transform.position);
+					bullet.AddForce (firePoint.transform.forward * bulletSpeed);
+					hasFired = true;
 				}
 			} else {
 				accumulator = 0.0f;

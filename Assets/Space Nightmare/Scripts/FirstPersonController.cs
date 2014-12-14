@@ -45,7 +45,6 @@ public class FirstPersonController : MonoBehaviour {
 		
 
 		if (characterController.isGrounded) {
-			Debug.Log("Vertical Speed: "+verticalSpeed);
 			if (verticalSpeed < -3.0f && inLadder == 0)
 			{
 				gameObject.SendMessage("OnDamage", Mathf.Abs(verticalSpeed)*5.0f);
@@ -56,7 +55,6 @@ public class FirstPersonController : MonoBehaviour {
 				hasJumped = true;
 			}
 		} else if (inLadder==0) {
-			Debug.Log("Increased Vertical Speed: "+verticalSpeed);
 			verticalSpeed += gravityForce * Time.deltaTime;
 		}
 		Vector3 speed;

@@ -15,6 +15,7 @@ public class FirstPersonController : MonoBehaviour {
 	float floorY;
 	bool hasJumped = false;
 	Vector3 numKey = new Vector3(0, 0, 0);
+	int inLadder = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -44,15 +45,36 @@ public class FirstPersonController : MonoBehaviour {
 		
 
 		if (characterController.isGrounded) {
+			Debug.Log("Vertical Speed: "+verticalSpeed);
+			if (verticalSpeed < -3.0f && inLadder == 0)
+			{
+				gameObject.SendMessage("OnDamage", Mathf.Abs(verticalSpeed)*5.0f);
+			}
+			verticalSpeed = 0.0f;
 			if(Input.GetButtonDown ("Jump")) {
 				verticalSpeed = jumpSpeed;
 				hasJumped = true;
 			}
-		} else {
+		} else if (inLadder==0) {
+			Debug.Log("Increased Vertical Speed: "+verticalSpeed);
 			verticalSpeed += gravityForce * Time.deltaTime;
 		}
-		
-		Vector3 speed = new Vector3 (sideSpeed, verticalSpeed, forwardSpeed);
+		Vector3 speed;
+		if (inLadder > 0) 
+		{
+			if (characterController.isGrounded && forwardSpeed <= 0.0f)
+			{
+				speed = new Vector3 (sideSpeed, verticalSpeed, forwardSpeed);
+			}
+			else
+			{
+				speed = new Vector3 (0.0f, forwardSpeed, 0.0f);
+			}
+		} 
+		else 
+		{
+			speed = new Vector3 (sideSpeed, verticalSpeed, forwardSpeed);
+		}
 		characterController.Move (transform.rotation * speed * movementSpeed * Time.deltaTime);
 	}
 
@@ -95,5 +117,15 @@ public class FirstPersonController : MonoBehaviour {
 	void TargetReached()
 	{
 
+	}
+
+	void ladderScaling()
+	{
+		inLadder++;
+	}
+
+	void ladderLeaving()
+	{
+		inLadder--;
 	}
 }

@@ -68,6 +68,10 @@ public class EnemyScript : MonoBehaviour {
 					gameObject.SendMessage("NotReached", runAnimation.name);
 	//				animation.CrossFade (runAnimation.name);
 				}
+				if (dist == Mathf.Infinity)
+				{
+					gameObject.SendMessage("NotReached", runAnimation.name);
+				}
 				//		Vector3 nextPos = agent.steeringTarget;
 			}
 		}

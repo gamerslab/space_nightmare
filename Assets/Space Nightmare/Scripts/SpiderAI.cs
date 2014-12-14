@@ -23,6 +23,7 @@ public class SpiderAI : MonoBehaviour {
 	AnimationClip runAnimation;
 	AnimationClip iddleAnimation;
 
+
 	// Use this for initialization
 	void Start () {
 		accumulator = 0.0f;
@@ -41,7 +42,7 @@ public class SpiderAI : MonoBehaviour {
 				} else if (accumulator <= fireMoment && !hasFired) {
 					currentDistance = Vector2.Distance(new Vector2(transform.position.x,transform.position.z),
 					                                   new Vector2(target.position.x,target.position.z));
-					if (currentDistance < rangeAttack)
+					if (currentDistance < rangeAttack && Mathf.Abs(transform.position.y-target.position.y)<1.0f)
 					{
 						target.gameObject.SendMessage("OnDamage", damageValue);
 					}

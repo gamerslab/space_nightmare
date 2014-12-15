@@ -6,6 +6,7 @@ Library/
 Assets/*
 !Assets/Editor*
 !Assets/Space Nightmare*
+!Assets/External*
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #

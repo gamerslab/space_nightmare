@@ -1,0 +1,3 @@
+[submodule "Assets/External"]
+	path = Assets/External
+	url = https://github.com/gamerslab/space_nightmare_external

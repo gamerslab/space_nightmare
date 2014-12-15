@@ -1,0 +1,35 @@
+import haltex
+from haltex.bibtex import bibtex
+
+documentclass "article", options => "a4paper, 11pt"
+
+usepackage "inputenc", options => "utf8"
+usepackage "babel", options => "catalan"
+usepackage "graphicx"
+usepackage "caption", options => "justification=centering, labelfont=bf"
+usepackage "color"
+usepackage "hyperref", options => "hidelinks, colorlinks=true, urlcolor=blue, linkcolor=black, citecolor=blue"
+usepackage "amsmath"
+usepackage "minted"
+usepackage "cite"
+usepackage "tocbibind", options => "nottoc,notlot,notlof"
+
+document:
+  cover title => "Space Nightmare",
+    subject => "Videojocs",
+    authors => ["Héctor Ramón Jiménez", "Xavier Serra Alza"],
+    footer => "Facultat d'Informàtica de Barcelona"
+
+  tableofcontents
+  clearpage
+
+  import sections.descripcio
+  import sections.funcionalitats
+  import sections.equip
+
+  bibliographystyle :plain
+  bibliography :references
+
+
+bibtex :references:
+  none

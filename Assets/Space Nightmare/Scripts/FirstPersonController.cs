@@ -42,7 +42,6 @@ public class FirstPersonController : MonoBehaviour {
 	void Move() {
 		float forwardSpeed = Input.GetAxis ("Vertical");
 		float sideSpeed = Input.GetAxis ("Horizontal");
-		
 
 		if (characterController.isGrounded) {
 			if (verticalSpeed < -3.0f && inLadder == 0)
@@ -53,10 +52,14 @@ public class FirstPersonController : MonoBehaviour {
 			if(Input.GetButtonDown ("Jump")) {
 				verticalSpeed = jumpSpeed;
 				hasJumped = true;
+				Debug.Log ("Jump");
 			}
-		} else if (inLadder==0) {
+		}
+
+		if(inLadder == 0) {
 			verticalSpeed += gravityForce * Time.deltaTime;
 		}
+
 		Vector3 speed;
 		if (inLadder > 0) 
 		{

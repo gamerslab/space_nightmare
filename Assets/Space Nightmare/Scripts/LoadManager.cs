@@ -7,6 +7,7 @@ public class LoadManager : MonoBehaviour {
 
 	public Image loadingImage;
 	public Text loadingText;
+	public AudioSource music;
 	public float fadeDuration = 1.0f;
 
 	float prevTimeSinceStartup;
@@ -29,7 +30,12 @@ public class LoadManager : MonoBehaviour {
 		prevTimeSinceStartup += delta;
 		
 		if(accum <= fadeDuration) {
-			loadingImage.color = new Color(loadingImage.color.r, loadingImage.color.g, loadingImage.color.b, accum / fadeDuration);
+			float alpha = accum / fadeDuration;
+			loadingImage.color = new Color(loadingImage.color.r, loadingImage.color.g, loadingImage.color.b, alpha);
+
+			if(music != null)
+				music.volume = 1 - alpha;
+
 			accum += delta;
 		} else {
 			loadingText.gameObject.SetActive(true);

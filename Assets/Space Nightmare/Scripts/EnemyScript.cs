@@ -62,17 +62,14 @@ public class EnemyScript : MonoBehaviour {
 					transform.rotation = 
 						Quaternion.Slerp (transform.rotation, 
 						                  Quaternion.LookRotation (_dir), turnSpeed * Time.deltaTime);
-	//				animation.CrossFade (attackAnimation.name);
 					gameObject.SendMessage("Reached", attackAnimation.name);
 				} else {
 					gameObject.SendMessage("NotReached", runAnimation.name);
-	//				animation.CrossFade (runAnimation.name);
 				}
 				if (dist == Mathf.Infinity)
 				{
 					gameObject.SendMessage("NotReached", runAnimation.name);
 				}
-				//		Vector3 nextPos = agent.steeringTarget;
 			}
 		}
 	}
@@ -90,12 +87,9 @@ public class EnemyScript : MonoBehaviour {
 				             Quaternion.AngleAxis(90,Vector3.left)); 
 			}
 			agent.Stop();
-			//			gameObject.GetComponent<BoxCollider>().isTrigger = true;
 			
 			animation[deathAnimation.name].wrapMode = WrapMode.ClampForever;
 			animation.Play(deathAnimation.name);
-			Debug.Log(deathAnimation.length);
-			Destroy(this.gameObject, deathAnimation.length+timeBeforeDisappear);
 			isDead = true;
 			gameObject.SendMessage("Dead",deathAnimation.name);
 		}

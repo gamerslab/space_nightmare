@@ -60,10 +60,6 @@ public class DoorOpener : MonoBehaviour {
 					other.SendMessage("wasteKey",typeKey);
 					Debug.Log ("Nice key");
 					isOpening = true;
-//					foreach(GameObject currentObject in GameObject.FindGameObjectsWithTag("EnemyFactory"))
-//					{
-//						currentObject.SendMessage("Activate");
-//					}
 				} else {
 					Debug.Log ("No key");
 				}

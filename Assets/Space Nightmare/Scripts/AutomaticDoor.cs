@@ -15,7 +15,6 @@ public class AutomaticDoor : MonoBehaviour {
 		initialX = door.position.z;
 		finalX = door.position.z + doorSlide;
 		Debug.Log("init: "+initialX+" fin: "+finalX);
-		GetComponent<MeshRenderer>().enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -31,7 +30,6 @@ public class AutomaticDoor : MonoBehaviour {
 					door.transform.Translate (finalX-door.position.z, 0.0f, 0.0f);
 				else
 					door.transform.Translate (-Time.deltaTime*openingSpeed, 0.0f, 0.0f);
-//				door.Translate (-Time.deltaTime*openingSpeed, 0.0f, 0.0f);
 			}
 		} 
 		else 
@@ -44,7 +42,6 @@ public class AutomaticDoor : MonoBehaviour {
 					door.transform.Translate (initialX-door.position.z, 0.0f, 0.0f);
 				else
 					door.transform.Translate (Time.deltaTime*openingSpeed, 0.0f, 0.0f);
-//				door.transform.Translate (Time.deltaTime*openingSpeed, 0.0f, 0.0f);
 			}
 		}
 	}

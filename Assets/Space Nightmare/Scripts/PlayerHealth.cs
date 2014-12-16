@@ -40,10 +40,9 @@ public class PlayerHealth : MonoBehaviour {
 		healthBar.value = currentHealth;
 	}
 
-	void HeathRecharge(int ammount)
+	void HealthRecharge(int amount)
 	{
-		currentHealth = Mathf.Min(maxHealth,currentHealth+ammount);
-		
+		currentHealth = Mathf.Min(maxHealth,currentHealth+amount);
 		healthBar.value = currentHealth;
 	}
 }

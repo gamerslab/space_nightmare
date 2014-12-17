@@ -13,49 +13,40 @@ public class EndingDialog : MonoBehaviour {
 	}
 
 	void LoadTitle() {
-
+		LoadManager.LoadLevel ("level_menu");
 	}
 
 	void TimeOut() {
 		DialogManager.Add (
 			new DialogManager.Callback (LoadTitle),
-			@"When the bomb exploded, it provoked
-a chain of reactions in the reactor room,
-which ended up destabilizing the
-wormhole that had been opened.|
+			@"When the bomb exploded, a
+chain of reactions in the
+reactor room destabilized the
+wormhole that had been opened.",
 
-In the following hour after the 
-detonation, the scientists confirmed
-its collapse, and all the evil beings
-that had crossed it were absorbed
-back to their dimension.",
-@"In the following weeks you were
-praised for saving the Earth.|
+@"However, in order to prevent
+such a disaster to happen again,
+the Global Government created
+an special elite force to
+investigate space-time anomalies.",
 
-However, in order to prevent such
-a disaster to happen again, the 
-Global Government ordered the creation
-of an special elite force specialized
-in fighting all kind of aliens.|
-Because of your experience in this kind
-of fights, you were given the command of this
-unit.",
 @"June, 2035:
-The following message has been received:
 
 Origin: Titan, moon of Jupiter
 Sender: Icarus, scientific team
 		studying its geography
-Message: We are meeting the schedule,
-the supplies are guaranteed. However,
-Johan went to investigate a strange
-light phenomena and is still missing.
-We are preparing an expedition to 
-look for him.",
+Message: We are meeting the
+schedule. Supplies are
+guaranteed.",
 
-@"THE WAR FOR OUR SOLAR SYSTEM
-IS FAR FROM ENDING...|
+@"       However, Johann
+went to investigate a strange
+light phenomena and is still
+missing. We are preparing an
+expedition to look for him.",
 
-AND YOUR DESTINY IS TO LEAD IT");
+@"THE WAR FOR OUR SOLAR
+SYSTEM...| HAS JUST BEGUN!"
+		);
 	}
 }

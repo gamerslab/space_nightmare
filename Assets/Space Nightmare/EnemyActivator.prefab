@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 100002}
+  destroy: {fileID: 6500000}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

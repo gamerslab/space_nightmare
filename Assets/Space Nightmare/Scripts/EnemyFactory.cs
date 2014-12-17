@@ -33,9 +33,9 @@ public class EnemyFactory : MonoBehaviour {
 				degrees = Random.Range(0,359);
 				distance = Random.Range(0,radium);
 
-				gameObject.transform.Translate(distance*Mathf.Sin(degrees),0.0f,distance*Mathf.Cos(degrees));
 				GameObject currentEnemy = 
 					(GameObject)Instantiate (enemy, transform.position, transform.rotation); 
+				currentEnemy.transform.Translate(distance*Mathf.Sin(degrees),0.0f,distance*Mathf.Cos(degrees));
 				currentEnemy.SendMessage ("SetTarget", target);
 				effectAccumulator = 0.0f;
 				creationEffects.Play();
@@ -45,16 +45,7 @@ public class EnemyFactory : MonoBehaviour {
 		} else {
 			accumulator += Time.deltaTime;
 		}
-		if (effectAccumulator >= timeOfEffect && effectsPlaying) 
-		{
-			effectsPlaying = false;
-			creationEffects.Stop();
-//			gameObject.transform.Translate(-distance*Mathf.Sin(degrees),0.0f,-distance*Mathf.Cos(degrees));
-		} 
-		else 
-		{
-			effectAccumulator += Time.deltaTime;
-		}
+
 		totalAccumulator += Time.deltaTime;
 		if (totalAccumulator >= timeOfLife) 
 		{

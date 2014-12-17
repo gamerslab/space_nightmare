@@ -45,31 +45,32 @@ public class EnemyScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(isDead)
+			return;
+
 		if (Vector3.Distance(Camera.main.transform.position,transform.position) > 25.0f)
 		{
 			gameObject.SendMessage("isIddle", iddleAnimation.name);
 		}
 		else
 		{
-			if (!isDead) {
-				agent.SetDestination (target.position);
-				
-				float dist = agent.remainingDistance; 
-				if (dist != Mathf.Infinity && agent.pathStatus == 
-				    NavMeshPathStatus.PathComplete && agent.remainingDistance <= agent.stoppingDistance) {
-					_dir = target.position - transform.position;
-					_dir.Normalize ();
-					transform.rotation = 
-						Quaternion.Slerp (transform.rotation, 
-						                  Quaternion.LookRotation (_dir), turnSpeed * Time.deltaTime);
-					gameObject.SendMessage("Reached", attackAnimation.name);
-				} else {
-					gameObject.SendMessage("NotReached", runAnimation.name);
-				}
-				if (dist == Mathf.Infinity)
-				{
-					gameObject.SendMessage("NotReached", runAnimation.name);
-				}
+			agent.SetDestination (target.position);
+			
+			float dist = agent.remainingDistance; 
+			if (dist != Mathf.Infinity && agent.pathStatus == 
+			    NavMeshPathStatus.PathComplete && agent.remainingDistance <= agent.stoppingDistance) {
+				_dir = target.position - transform.position;
+				_dir.Normalize ();
+				transform.rotation = 
+					Quaternion.Slerp (transform.rotation, 
+					                  Quaternion.LookRotation (_dir), turnSpeed * Time.deltaTime);
+				gameObject.SendMessage("Reached", attackAnimation.name);
+			} else {
+				gameObject.SendMessage("NotReached", runAnimation.name);
+			}
+			if (dist == Mathf.Infinity)
+			{
+				gameObject.SendMessage("NotReached", runAnimation.name);
 			}
 		}
 	}
@@ -91,7 +92,7 @@ public class EnemyScript : MonoBehaviour {
 			animation[deathAnimation.name].wrapMode = WrapMode.ClampForever;
 			animation.Play(deathAnimation.name);
 			isDead = true;
-			gameObject.SendMessage("Dead",deathAnimation.name);
+			gameObject.SendMessage("Dead", deathAnimation.name);
 		}
 	}
 

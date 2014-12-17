@@ -65,6 +65,7 @@ public class MachineGunController : MonoBehaviour {
 		} else {
 			accumulator -= Time.deltaTime;
 		}
+
 		if (lightAccumulator <= 0.0f) 
 		{
 			shootLight.gameObject.SetActive(false);
@@ -76,8 +77,8 @@ public class MachineGunController : MonoBehaviour {
 	void Shoot() {
 		shootAnimation.Stop ();
 		shootAnimation.Play();
-		accumulator += interval;
-		lightAccumulator = interval;
+		accumulator = interval;
+		lightAccumulator = interval / 2;
 		currentAmmo -= 1;
 		currentAmmoUI.text = currentAmmo.ToString();
 		

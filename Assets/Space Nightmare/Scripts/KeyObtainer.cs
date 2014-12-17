@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class KeyObtainer : MonoBehaviour {
 	public int typeKey;
+	public RawImage keyUI;
+
 	// Use this for initialization
 	void Start () {
 		Transform firstCube = transform.Find ("Cube1");
@@ -42,6 +45,10 @@ public class KeyObtainer : MonoBehaviour {
 		if (other.tag == "Player") {
 			Debug.Log ("Player detected");
 			other.SendMessage("GiveKey", typeKey);
+
+			if(keyUI != null)
+				keyUI.gameObject.SetActive(true);
+
 			Destroy(gameObject);
 		} else {
 			Debug.Log ("Alien detected");

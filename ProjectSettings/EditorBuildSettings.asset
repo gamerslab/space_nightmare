@@ -6,6 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Space Nightmare/level_menu.unity
+  - enabled: 1
+    path: Assets/Space Nightmare/level_intro.unity
+  - enabled: 1
     path: Assets/Space Nightmare/level_hangar.unity
   - enabled: 1
     path: Assets/Space Nightmare/level_space.unity

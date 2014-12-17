@@ -9,9 +9,9 @@ public class PlayerHealth : MonoBehaviour {
 	public Slider healthBar;
 	public Color flashColor = new Color(1f, 0, 0, 1f);
 	public float flashSpeed = 3f;
+	public AudioClip hurtAudio;
 
 	bool damaged = false;
-	bool isDead = false;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +20,9 @@ public class PlayerHealth : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Time.timeScale == 0)
+			return;
+
 		if(damaged) {
 			damageImage.color = flashColor;
 			damaged = false;
@@ -34,15 +37,20 @@ public class PlayerHealth : MonoBehaviour {
 
 		if(currentHealth < 0) {
 			currentHealth = 0;
-			isDead = true;
+			Time.timeScale = 0;
 		}
 
 		healthBar.value = currentHealth;
+		AudioSource.PlayClipAtPoint (hurtAudio, Camera.main.transform.position);
 	}
 
 	void HealthRecharge(int amount)
 	{
 		currentHealth = Mathf.Min(maxHealth,currentHealth+amount);
 		healthBar.value = currentHealth;
+	}
+
+	void Dead() {
+
 	}
 }

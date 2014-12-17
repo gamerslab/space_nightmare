@@ -194,6 +194,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeKey: 0
+  keyUI: {fileID: 0}
+  keyAudio: {fileID: 8300000, guid: 56a8641f017650d4bad9ac7c9286159d, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

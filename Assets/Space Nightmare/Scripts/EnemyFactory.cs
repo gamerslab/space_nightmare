@@ -27,6 +27,16 @@ public class EnemyFactory : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		totalAccumulator += Time.deltaTime;
+
+		if (totalAccumulator >= timeOfLife) 
+		{
+			if(! creationEffects.isPlaying)
+				Destroy(gameObject);
+
+			return;
+		}
+
 		if (accumulator >= interval) {
 			int randomNumber = Random.Range (0, 100);
 			if (randomNumber < taken) {
@@ -44,12 +54,6 @@ public class EnemyFactory : MonoBehaviour {
 			accumulator = 0.0f;
 		} else {
 			accumulator += Time.deltaTime;
-		}
-
-		totalAccumulator += Time.deltaTime;
-		if (totalAccumulator >= timeOfLife) 
-		{
-			Destroy(gameObject);
 		}
 	}
 }

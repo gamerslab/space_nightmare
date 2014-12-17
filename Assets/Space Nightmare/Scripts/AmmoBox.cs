@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class AmmoBox : MonoBehaviour {
+	public AudioClip ammoAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -15,11 +16,9 @@ public class AmmoBox : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Player") {
-			Debug.Log ("Player detected");
 			other.SendMessage("AmmoRecharge",120);
+			AudioSource.PlayClipAtPoint(ammoAudio, Camera.main.transform.position);
 			Destroy(gameObject);
-		} else {
-			Debug.Log ("Alien detected");
 		}
 	}
 }

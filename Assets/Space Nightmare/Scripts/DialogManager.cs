@@ -74,6 +74,7 @@ public class DialogManager : MonoBehaviour {
 		afterDialog = callback;
 		prevTimeSinceStartup = Time.realtimeSinceStartup;
 		Time.timeScale = 0;
+		dialogText.text = "";
 		gameObject.SetActive (true);
 	}
 

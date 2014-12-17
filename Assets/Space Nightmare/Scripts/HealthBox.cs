@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class HealthBox : MonoBehaviour {
+	public AudioClip healthAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -15,11 +16,9 @@ public class HealthBox : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Player") {
-			Debug.Log ("Player detected");
-			other.SendMessage("HealthRecharge",20);
+			other.SendMessage("HealthRecharge", 20);
+			AudioSource.PlayClipAtPoint(healthAudio, Camera.main.transform.position);
 			Destroy(gameObject);
-		} else {
-			Debug.Log ("Alien detected");
 		}
 	}
 }

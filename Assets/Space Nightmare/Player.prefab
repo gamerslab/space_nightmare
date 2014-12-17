@@ -610,6 +610,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashSpeed: 3
+  hurtAudio: {fileID: 8300000, guid: 4e8cec7445a9618419f1abd660b6da0f, type: 3}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -629,6 +630,7 @@ MonoBehaviour:
   bang: {fileID: 19800000}
   currentAmmoUI: {fileID: 0}
   storeAmmoUI: {fileID: 0}
+  fireAudio: {fileID: 8300000, guid: 393b563f52c25084ab6123e4318c5065, type: 3}
   shootLight: {fileID: 10800000}
 --- !u!124 &12400000
 Behaviour:

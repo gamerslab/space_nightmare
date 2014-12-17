@@ -8,6 +8,8 @@ public class AutomaticDoor : MonoBehaviour {
 	public float openingSpeed;
 	float currentDisplacement = 0.0f;
 	float initialX, finalX;
+	public AudioClip openAudio;
+	public AudioClip closeAudio;
 	
 	// Use this for initialization
 	void Start () {
@@ -48,13 +50,19 @@ public class AutomaticDoor : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Player") {
-			isOpening = true;
+			if(!isOpening) {
+				isOpening = true;
+				AudioSource.PlayClipAtPoint(openAudio, transform.position);
+			}
 		}
 	}
 	
 	void OnTriggerExit(Collider other) {
 		if (other.tag == "Player") {
-			isOpening = false;
+			if(isOpening) {
+				isOpening = false;
+				AudioSource.PlayClipAtPoint(closeAudio, transform.position);
+			}
 		}
 	}
 }

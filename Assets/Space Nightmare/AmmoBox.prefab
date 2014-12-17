@@ -84,6 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d17955efb917cc40adf774d1ec0fe6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoAudio: {fileID: 8300000, guid: 3aebc2c6b40816948949bf899a01daab, type: 3}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -361,6 +361,7 @@ GameObject:
   - 4: {fileID: 506037202}
   - 114: {fileID: 506037201}
   - 82: {fileID: 506037203}
+  - 114: {fileID: 506037204}
   m_Layer: 0
   m_Name: Introduction
   m_TagString: Untagged
@@ -379,7 +380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824ac6ba69bd187448ca814ef1d623f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 5
 --- !u!4 &506037202
 Transform:
   m_ObjectHideFlags: 0
@@ -450,6 +450,18 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &506037204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 506037200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b73c9239268907447a43e69b8abec372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seconds: 2
 --- !u!1 &967918886
 GameObject:
   m_ObjectHideFlags: 0

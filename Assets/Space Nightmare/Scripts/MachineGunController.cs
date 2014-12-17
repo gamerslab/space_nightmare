@@ -12,6 +12,7 @@ public class MachineGunController : MonoBehaviour {
 	public ParticleSystem bang;
 	public Text currentAmmoUI;
 	public Text storeAmmoUI;
+	public AudioClip fireAudio;
 
 	int currentAmmo;
 	int storeAmmo;
@@ -98,6 +99,8 @@ public class MachineGunController : MonoBehaviour {
 				Debug.Log("Enemy hit");
 			}
 		}
+
+		AudioSource.PlayClipAtPoint (fireAudio, Camera.main.transform.position);
 		shootLight.gameObject.SetActive(true);
 	}
 

@@ -225,6 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorSlide: 3.5
   typeKey: 1
+  openAudio: {fileID: 8300000, guid: 976d392d8cec5c349a13b279947efa25, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

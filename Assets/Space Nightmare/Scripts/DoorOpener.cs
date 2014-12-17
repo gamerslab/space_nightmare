@@ -7,6 +7,7 @@ public class DoorOpener : MonoBehaviour {
 	Transform door;
 	public float doorSlide;
 	public int typeKey;
+	public AudioClip openAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -58,6 +59,7 @@ public class DoorOpener : MonoBehaviour {
 
 		if (!isOpening && (other.gameObject.GetComponent<FirstPersonController> ()).hasKey (typeKey)) {
 			isOpening = true;
+			AudioSource.PlayClipAtPoint(openAudio, transform.position);
 		}
 	}
 }

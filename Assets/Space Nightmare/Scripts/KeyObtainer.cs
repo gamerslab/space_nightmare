@@ -5,6 +5,7 @@ using System.Collections;
 public class KeyObtainer : MonoBehaviour {
 	public int typeKey;
 	public RawImage keyUI;
+	public AudioClip keyAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -43,15 +44,13 @@ public class KeyObtainer : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Player") {
-			Debug.Log ("Player detected");
 			other.SendMessage("GiveKey", typeKey);
 
 			if(keyUI != null)
 				keyUI.gameObject.SetActive(true);
 
+			AudioSource.PlayClipAtPoint(keyAudio, transform.position);
 			Destroy(gameObject);
-		} else {
-			Debug.Log ("Alien detected");
 		}
 	}
 }

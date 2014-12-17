@@ -36,7 +36,24 @@ deployed near Saturn in order
 to study the disturbance.|
 
 After 6 days... All
-communications are lost."
+communications are lost.",
+
+@"Unidentified creatures
+started to appear in the
+Earth surface.|
+
+The space station was
+acting as a link between
+the wormhole and the Earth.",
+
+			@"August, 2034:
+
+I was assigned to destroy the
+space station, Cluster.|
+
+Just when I was about to
+leave... The hangar was
+attacked..."
 		);
 	}
 }

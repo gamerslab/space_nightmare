@@ -12,6 +12,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Space Nightmare/level_hangar.unity
   - enabled: 1
+    path: Assets/Space Nightmare/level_trip.unity
+  - enabled: 1
     path: Assets/Space Nightmare/level_space.unity
   - enabled: 1
     path: Assets/Space Nightmare/level_end.unity

@@ -17036,7 +17036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c981938c71a134f4494f0bbab77b5d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: level_space
+  levelName: level_trip
 --- !u!135 &449427524
 SphereCollider:
   m_ObjectHideFlags: 0

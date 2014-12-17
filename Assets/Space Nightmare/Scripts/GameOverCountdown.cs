@@ -6,6 +6,7 @@ using System;
 public class GameOverCountdown : MonoBehaviour {
 	public Text countdownText;
 	public float timeLeft;
+	public PlayerHealth player;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +21,7 @@ public class GameOverCountdown : MonoBehaviour {
 			TimeSpan t = TimeSpan.FromSeconds(timeLeft);
 			countdownText.text = string.Format("{0:D2}:{1:D2}.{2:D3}", t.Minutes, t.Seconds, t.Milliseconds);
 		} else {
-			// Game over
+			player.OnDamage(9999);
 		}
 	}
 }

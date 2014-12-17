@@ -2,26 +2,23 @@
 using System.Collections;
 
 public class TrollAI : MonoBehaviour {
+	public Rigidbody bulletFire;
+	public float bulletSpeed;
+
 	NavMeshAgent agent;
-	AnimationState anim;
-	float endAnimationAtTime;
-	
-	private Vector3 _dir;
+    Vector3 _dir;
 	float turnSpeed = 4.0f;
 
-	public Rigidbody bulletFire;
 	float fireRate = 0.5f;
 	float interval;
 	float accumulator;
 	float fireMoment;
+
 	Transform firePoint;
+
 	bool hasFired;
 	bool reached;
-	public float bulletSpeed;
-
 	bool isDead = false;
-	
-	float timeBeforeDisappear = 5.0f;
 	
 	// Animations
 	AnimationClip attackAnimation;
@@ -52,28 +49,16 @@ public class TrollAI : MonoBehaviour {
 					bullet.AddForce (firePoint.transform.forward * bulletSpeed);
 					hasFired = true;
 				}
-			} else {
-				accumulator = 0.0f;
 			}
-			if (accumulator > 0.0f) {
-					accumulator -= Time.deltaTime;
-			}
-		} else {
-			if(anim && anim.enabled && anim.time >= endAnimationAtTime)
-			{
-				animation.Stop();
-				anim.enabled = false;
-			}
+		} else if(accumulator <= 0) {
+			animation.Stop();
 		}
-		//		Vector3 nextPos = agent.steeringTarget;
-	}
-	
-	void PlayAnimation(string nameOfAnimation, float startTime, float endTime) {
-		anim = animation[nameOfAnimation];
-		anim.time = startTime;
-		anim.weight = 1;
-		anim.enabled = true;
-		endAnimationAtTime = endTime;
+
+		if(accumulator > 0.0f) {
+			accumulator -= Time.deltaTime;
+		} else {
+			accumulator = 0f;
+		}
 	}
 
 	void Reached(){
@@ -100,7 +85,7 @@ public class TrollAI : MonoBehaviour {
 			Destroy(gameObject.GetComponent<NavMeshAgent> ());
 			Destroy(gameObject.GetComponent<CharacterController> ());
 			isDead = true;
-			PlayAnimation (deathAnimation.name, 0.0f, 1.29f);
+			accumulator = 1.25f;
 		}
 	}
 

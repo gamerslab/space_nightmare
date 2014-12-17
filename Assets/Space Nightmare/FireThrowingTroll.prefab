@@ -3757,7 +3757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletFire: {fileID: 5400000, guid: 09132d7d4f2f9be4684444c996d66291, type: 2}
-  bulletSpeed: 800
+  bulletSpeed: 400
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

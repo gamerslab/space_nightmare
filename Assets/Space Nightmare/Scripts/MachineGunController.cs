@@ -37,6 +37,9 @@ public class MachineGunController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Time.timeScale == 0)
+			return;
+
 		if(accumulator <= 0) {
 			if(reload) {
 				int ammoToLoad = ammoPerMagazine - currentAmmo;

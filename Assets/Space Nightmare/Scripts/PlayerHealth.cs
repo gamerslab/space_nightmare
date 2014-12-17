@@ -9,9 +9,11 @@ public class PlayerHealth : MonoBehaviour {
 	public Slider healthBar;
 	public Color flashColor = new Color(1f, 0, 0, 1f);
 	public float flashSpeed = 3f;
-	public AudioClip hurtAudio;
+	public GameOverMenu gameOverMenu;
+	public GameObject pauseMenu;
 
-	bool damaged = false;
+	public AudioClip hurtAudio;
+	public AudioClip deathAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -22,22 +24,24 @@ public class PlayerHealth : MonoBehaviour {
 	void Update () {
 		if (Time.timeScale == 0)
 			return;
-
-		if(damaged) {
-			damageImage.color = flashColor;
-			damaged = false;
-		} else {
-			damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
-		}
+		
+		damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
 	}
 
 	void OnDamage(int damage) {
-		damaged = true;
+		if (currentHealth <= 0)
+			return;
+
 		currentHealth -= damage;
 
-		if(currentHealth < 0) {
+		if(currentHealth <= 0) {
 			currentHealth = 0;
+			AudioSource.PlayClipAtPoint(deathAudio, transform.position);
 			Time.timeScale = 0;
+			pauseMenu.SetActive(false);
+			gameOverMenu.Toggle();
+		} else {
+			damageImage.color = flashColor;
 		}
 
 		healthBar.value = currentHealth;
@@ -48,9 +52,5 @@ public class PlayerHealth : MonoBehaviour {
 	{
 		currentHealth = Mathf.Min(maxHealth,currentHealth+amount);
 		healthBar.value = currentHealth;
-	}
-
-	void Dead() {
-
 	}
 }

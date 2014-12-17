@@ -26,6 +26,8 @@ public class TrollAI : MonoBehaviour {
 	AnimationClip iddleAnimation;
 	AnimationClip deathAnimation;
 
+	public AudioClip attackAudio;
+
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent> ();
@@ -34,6 +36,7 @@ public class TrollAI : MonoBehaviour {
 		fireMoment = 1.0f;
 		firePoint = transform.Find ("FirePoint");
 		hasFired = false;
+		reached = false;
 	}
 	
 	// Update is called once per frame
@@ -62,15 +65,21 @@ public class TrollAI : MonoBehaviour {
 	}
 
 	void Reached(){
+		if (!reached || !animation.isPlaying)
+			AudioSource.PlayClipAtPoint (attackAudio, transform.position);
+
 		animation.CrossFade (attackAnimation.name);
 		reached = true;
 	}
 	
 	void NotReached(){
 		RaycastHit hit;
-
-		if (Physics.Raycast (firePoint.transform.position, Camera.main.transform.position - firePoint.transform.position, out hit)) {
-			if(hit.collider.tag == "Player") {
+		Vector3 dir = (Camera.main.transform.position - firePoint.transform.position);
+		dir.Normalize ();
+		Debug.DrawRay(firePoint.transform.position, dir * 15, Color.red, 2, true);
+		
+		if (Physics.Raycast (firePoint.transform.position, dir, out hit, 15, Physics.kDefaultRaycastLayers)) {
+			if(hit.collider.gameObject.tag == "Player") {
 				Reached();
 				return;
 			}

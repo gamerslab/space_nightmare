@@ -9,6 +9,7 @@ public class EnemyFactory : MonoBehaviour {
 	public float radium;
 	public float interval;
 	public float timeOfLife;
+	public AudioClip spawnAudio;
 
 	float accumulator = 0.0f;
 	float effectAccumulator = 0.0f;
@@ -23,6 +24,7 @@ public class EnemyFactory : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		taken = (int) Mathf.Floor (likelihood * 100);
+		AudioSource.PlayClipAtPoint (spawnAudio, transform.position);
 	}
 	
 	// Update is called once per frame

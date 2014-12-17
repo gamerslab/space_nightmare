@@ -27,6 +27,11 @@ public class EnemyScript : MonoBehaviour {
 	int likelihoodPriceInt;
 	public GameObject price;
 
+	public AudioClip nearbyAudio;
+	public AudioClip hurtAudio;
+	public AudioClip deathAudio;
+	public float playNearbySeconds = 5.0f;
+	float accum = 0;
 
 	void Start () {
 		agent = GetComponent<NavMeshAgent> ();
@@ -58,7 +63,8 @@ public class EnemyScript : MonoBehaviour {
 			
 			float dist = agent.remainingDistance; 
 			if (dist != Mathf.Infinity && agent.pathStatus == 
-			    NavMeshPathStatus.PathComplete && agent.remainingDistance <= agent.stoppingDistance) {
+			    NavMeshPathStatus.PathComplete && agent.remainingDistance <= agent.stoppingDistance &&
+			    Vector3.Distance(transform.position, target.transform.position) <= agent.stoppingDistance) {
 				_dir = target.position - transform.position;
 				_dir.Normalize ();
 				transform.rotation = 
@@ -66,6 +72,13 @@ public class EnemyScript : MonoBehaviour {
 					                  Quaternion.LookRotation (_dir), turnSpeed * Time.deltaTime);
 				gameObject.SendMessage("Reached", attackAnimation.name);
 			} else {
+				if(accum <= 0) {
+					AudioSource.PlayClipAtPoint(nearbyAudio, transform.position);
+					accum = playNearbySeconds;
+				} else {
+					accum -= Time.deltaTime;
+				}
+
 				gameObject.SendMessage("NotReached", runAnimation.name);
 			}
 			if (dist == Mathf.Infinity)
@@ -78,17 +91,20 @@ public class EnemyScript : MonoBehaviour {
 	void OnDamage(int damage)
 	{
 		lifePoints -= damage;
-		Debug.Log (lifePoints);
+		AudioSource.PlayClipAtPoint(hurtAudio, transform.position);
+		
 		if (lifePoints <= 0 && !isDead) {
-			if (Random.Range(0,100) <= likelihoodPriceInt)
+			lifePoints = 0;
+
+			if (price != null && Random.Range(0,100) <= likelihoodPriceInt)
 			{
 				Vector3 boxPosition = transform.position;
 				boxPosition.y = 0.37f;
 				Instantiate (price, boxPosition, 
 				             Quaternion.AngleAxis(90,Vector3.left)); 
 			}
+
 			agent.Stop();
-			
 			animation[deathAnimation.name].wrapMode = WrapMode.ClampForever;
 			animation.Play(deathAnimation.name);
 			isDead = true;
@@ -104,8 +120,8 @@ public class EnemyScript : MonoBehaviour {
 		
 	}
 	
-	void Dead(){
-		
+	void Dead() {
+		AudioSource.PlayClipAtPoint (deathAudio, transform.position);
 	}
 	
 	void SetTarget(Transform sentTarget){

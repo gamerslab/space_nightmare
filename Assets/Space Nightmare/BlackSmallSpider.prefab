@@ -2044,6 +2044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageValue: 5
+  attackAudio: {fileID: 8300000, guid: 702f2edb5e7f180498c25b1bfdc575fc, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2065,6 +2066,10 @@ MonoBehaviour:
   iddleAnimation: {fileID: 7400010, guid: bc600cce01eb57a409f4e69025868a2c, type: 3}
   likelihoodPrice: .00999999978
   price: {fileID: 100000, guid: fd4a4afda7d19fc45a0d4823ff94d562, type: 2}
+  nearbyAudio: {fileID: 8300000, guid: 128d99d5a4fb86348a3a5e3fa5f5952e, type: 3}
+  hurtAudio: {fileID: 8300000, guid: c9ae906aca6ba7a4ea0285a12a031f2a, type: 3}
+  deathAudio: {fileID: 8300000, guid: b9b6f677274954a439f62fe1ac08fd3e, type: 3}
+  playNearbySeconds: 5
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

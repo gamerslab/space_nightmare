@@ -23,6 +23,8 @@ public class SpiderAI : MonoBehaviour {
 	AnimationClip runAnimation;
 	AnimationClip iddleAnimation;
 
+	public AudioClip attackAudio;
+
 
 	// Use this for initialization
 	void Start () {
@@ -45,6 +47,7 @@ public class SpiderAI : MonoBehaviour {
 					if (currentDistance < rangeAttack && Mathf.Abs(transform.position.y-target.position.y)<1.0f)
 					{
 						target.gameObject.SendMessage("OnDamage", damageValue);
+						AudioSource.PlayClipAtPoint (attackAudio, transform.position);
 					}
 					hasFired = true;
 				}
@@ -66,8 +69,7 @@ public class SpiderAI : MonoBehaviour {
 		}
 	}
 
-	void Reached(){
-		animation.
+	void Reached() {
 		animation.CrossFade (attackAnimation.name);
 		reached = true;
 	}

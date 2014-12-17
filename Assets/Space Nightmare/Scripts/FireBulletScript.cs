@@ -3,6 +3,7 @@ using System.Collections;
 
 public class FireBulletScript : MonoBehaviour {
 	public GameObject explosion;
+	public AudioClip explosionAudio;
 	public float damageRadius = 5f;
 	public float damageAtCenter = 20f;
 
@@ -20,13 +21,17 @@ public class FireBulletScript : MonoBehaviour {
 		ParticleSystem p = b.GetComponent<ParticleSystem>();
 		p.Play();
 		p.gameObject.AddComponent("ParticleSystemAutoDestroy");
+		AudioSource.PlayClipAtPoint(explosionAudio, transform.position);
 
 		foreach(Collider collider in Physics.OverlapSphere(transform.position, damageRadius)) {
 			if(collider.gameObject.tag == "Player") {
 				RaycastHit hit;
 				bool exposed = false;
 
-				if(Physics.Raycast(transform.position, collider.transform.position - transform.position, out hit)) {
+				Vector3 dir = (collider.transform.position - transform.position);
+				dir.Normalize();
+
+				if(Physics.Raycast(transform.position, dir, out hit, 5, Physics.kDefaultRaycastLayers)) {
 					exposed = (hit.collider == collider);
 				}
 

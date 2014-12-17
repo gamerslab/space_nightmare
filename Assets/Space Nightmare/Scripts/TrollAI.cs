@@ -82,6 +82,15 @@ public class TrollAI : MonoBehaviour {
 	}
 	
 	void NotReached(){
+		RaycastHit hit;
+
+		if (Physics.Raycast (firePoint.transform.position, Camera.main.transform.position - firePoint.transform.position, out hit)) {
+			if(hit.collider.tag == "Player") {
+				Reached();
+				return;
+			}
+		}
+
 		animation.CrossFade (runAnimation.name);
 		reached = false;
 	}
@@ -98,6 +107,10 @@ public class TrollAI : MonoBehaviour {
 	void isIddle()
 	{
 		animation.CrossFade (iddleAnimation.name);
+	}
+
+	void setTarget(Transform target) {
+
 	}
 
 	void setAttackAnimation(AnimationClip attackAnimation)

@@ -53,19 +53,11 @@ public class DoorOpener : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (!isOpening) {
-			if (other.tag == "Player") {
-				Debug.Log ("Player detected");
-				if ((other.gameObject.GetComponent<FirstPersonController> ()).hasKey (typeKey)) {
-					other.SendMessage("wasteKey",typeKey);
-					Debug.Log ("Nice key");
-					isOpening = true;
-				} else {
-					Debug.Log ("No key");
-				}
-			} else {
-				Debug.Log ("Alien detected");
-			}
+		if(other.tag != "Player")
+			return;
+
+		if (!isOpening && (other.gameObject.GetComponent<FirstPersonController> ()).hasKey (typeKey)) {
+			isOpening = true;
 		}
 	}
 }

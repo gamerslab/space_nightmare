@@ -10,6 +10,7 @@ public class FirstPersonController : MonoBehaviour {
 	public float gravityForce = -9.8f;
 
 	float verticalRotation = 0.0f;
+	float verticalRotationSpeed = 0.0f;
 	float verticalSpeed = 0.0f;
 	CharacterController characterController;
 	float floorY;
@@ -38,8 +39,18 @@ public class FirstPersonController : MonoBehaviour {
 		transform.Rotate (0, lateralRotation, 0);
 		
 		verticalRotation -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
+		verticalRotation += verticalRotationSpeed > 0 ? -0.3f : 0;
 		verticalRotation = Mathf.Clamp (verticalRotation, -verticalRange, verticalRange);
 		Camera.main.transform.localRotation = Quaternion.Euler (verticalRotation, 0, 0);
+		
+		verticalRotationSpeed -= Time.deltaTime;
+
+		if(verticalRotationSpeed < 0)
+			verticalRotationSpeed = 0;
+	}
+
+	public void Recoil() {
+		verticalRotationSpeed = 0.1f;
 	}
 
 	void Move() {

@@ -24990,6 +24990,7 @@ MonoBehaviour:
   storeAmmoUI: {fileID: 1435404968}
   fireAudio: {fileID: 8300000, guid: 393b563f52c25084ab6123e4318c5065, type: 3}
   shootLight: {fileID: 1836380903}
+  fpsController: {fileID: 167641676}
 --- !u!111 &733235555
 Animation:
   m_ObjectHideFlags: 0

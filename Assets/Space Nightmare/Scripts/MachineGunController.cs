@@ -22,6 +22,7 @@ public class MachineGunController : MonoBehaviour {
 	bool reload;
 
 	public Light shootLight;
+	public FirstPersonController fpsController;
 
 	// Use this for initialization
 	void Start () {
@@ -103,6 +104,7 @@ public class MachineGunController : MonoBehaviour {
 			}
 		}
 
+		fpsController.Recoil ();
 		AudioSource.PlayClipAtPoint (fireAudio, Camera.main.transform.position);
 		shootLight.gameObject.SetActive(true);
 	}

@@ -46,7 +46,7 @@ missing. We are preparing an
 expedition to look for him.",
 
 @"THE WAR FOR OUR SOLAR
-SYSTEM...| HAS JUST BEGUN!"
+SYSTEM...| HAS JUST BEGUN."
 		);
 	}
 }
